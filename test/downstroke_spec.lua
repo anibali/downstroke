@@ -51,6 +51,12 @@ describe('downstroke', function()
     assert.are.same(expected, actual)
   end)
 
+  describe('contains', function()
+    local array = {2, 4, 6}
+    assert.is_true(_.contains(array, 4))
+    assert.is_false(_.contains(array, 5))
+  end)
+
   describe('each', function()
     local array = {2, 4, 6}
     local array_copy = {}

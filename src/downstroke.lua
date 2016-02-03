@@ -133,6 +133,15 @@ end
 
 -- Collection
 
+_.contains = function(collection, target_value)
+  for key, value in pairs(collection) do
+    if value == target_value then
+      return true
+    end
+  end
+  return false
+end
+
 _.each = function(collection, func)
   func = _.get_function(func)
   for key, value in pairs(collection) do
