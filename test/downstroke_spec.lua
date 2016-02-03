@@ -22,6 +22,13 @@ describe('downstroke', function()
     assert.are.same(expected, actual)
   end)
 
+  describe('take', function()
+    local array = {'a', 'b', 'c', 'd', 'e'}
+    local expected = {'a', 'b', 'c'}
+    local actual = _.take(array, 3)
+    assert.are.same(expected, actual)
+  end)
+
   describe('flow', function()
     local f = function(s) return 'f(' .. s .. ')' end
     local g = function(s) return 'g(' .. s .. ')' end

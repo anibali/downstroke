@@ -79,6 +79,26 @@ _.compact = function(array)
   return compacted_array
 end
 
+---
+-- Returns the first `n` elements from the beginning of `array`.
+--
+-- @tparam table array
+-- @tparam[opt=1] integer n
+_.take = function(array, n)
+  if n == nil then
+    n = 1
+  end
+  local taken = {}
+  for i, element in ipairs(array) do
+    if i <= n then
+      table.insert(taken, element)
+    else
+      break
+    end
+  end
+  return taken
+end
+
 -- Util
 
 _.flow = function(...)
