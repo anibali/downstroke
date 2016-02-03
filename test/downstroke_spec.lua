@@ -44,6 +44,15 @@ describe('downstroke', function()
     assert.are.same(expected, actual)
   end)
 
+  describe('each', function()
+    local array = {2, 4, 6}
+    local array_copy = {}
+    _.each(array, function(value, key)
+      array_copy[key] = value
+    end)
+    assert.are.same(array, array_copy)
+  end)
+
   describe('filter', function()
     local array = {1, 2, 3, 4, 5}
     local is_even = function(x) return x % 2 == 0 end

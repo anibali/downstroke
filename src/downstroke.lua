@@ -1,3 +1,5 @@
+---
+-- @module downstroke
 local _ = {}
 local placeholder = _
 
@@ -21,6 +23,11 @@ _.get_function = function(func)
   end
 end
 
+---
+-- Partially applies arguments to `func`.
+--
+-- @func func
+-- @tparam[opt] varargs partials
 _.partial = function(...)
   local args, n_args = _.pack(...)
   local func = args[1]
@@ -106,11 +113,19 @@ end
 
 -- Collection
 
+_.each = function(collection, func)
+  func = _.get_function(func)
+  for key, value in pairs(collection) do
+    func(value, key)
+  end
+  return collection
+end
+
 _.filter = function(collection, func)
   func = _.get_function(func)
   local filtered_collection = {}
   for key, value in pairs(collection) do
-    if func(value) then
+    if func(value, key) then
       table.insert(filtered_collection, value)
     end
   end
@@ -121,7 +136,7 @@ _.map = function(collection, func)
   func = _.get_function(func)
   local mapped_collection = {}
   for key, value in pairs(collection) do
-    table.insert(mapped_collection, func(value))
+    table.insert(mapped_collection, func(value, key))
   end
   return mapped_collection
 end
@@ -134,7 +149,7 @@ _.reduce = function(collection, func, accumulator)
       first_pass = false
       accumulator = value
     else
-      accumulator = func(accumulator, value)
+      accumulator = func(accumulator, value, key)
     end
   end
   return accumulator
