@@ -89,6 +89,13 @@ describe('downstroke', function()
     assert.are.same(expected, actual)
   end)
 
+  describe('sort_by', function()
+    local array = {5, 2, -6}
+    local expected = {2, 5, -6}
+    local actual = _.sort_by(array, math.abs)
+    assert.are.same(expected, actual)
+  end)
+
   describe('to_pairs', function()
     local map = {foo=42, bar=27}
     local expected = {{'foo', 42}, {'bar', 27}}
