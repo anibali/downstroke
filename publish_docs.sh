@@ -11,6 +11,6 @@ git fetch origin gh-pages
 git reset --mixed origin/gh-pages
 git checkout -b gh-pages --track origin/gh-pages
 git add .
-git commit -m "Automatic documentation update [ci skip]"
+git commit --author "Auto <>" -m "Automatic documentation update [ci skip]"
 git push origin gh-pages
 rm -rf .git
