@@ -9,4 +9,11 @@ dependencies:
 
 test:
   override:
-    - docker run --rm downstroke busted test
+    - mkdir -p $CIRCLE_TEST_REPORTS/busted
+    - docker run --rm downstroke busted --output=junit test > $CIRCLE_TEST_REPORTS/busted/junit.xml
+
+deployment:
+  docs:
+    branch: master
+    commands:
+      - ./publish_docs.sh

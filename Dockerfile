@@ -1,8 +1,10 @@
 FROM ubuntu:14.04
 
-# Install build tools
+# Install required packages
 RUN apt-get update \
-    && apt-get install -y build-essential cmake git curl
+ && apt-get install -y build-essential cmake git curl unzip \
+ && apt-get clean \
+ && rm -rf /var/lib/apt/lists/*
 
 # Install LuaJIT
 RUN git clone https://github.com/torch/luajit-rocks.git /tmp/luajit-rocks \
@@ -19,13 +21,6 @@ ENV LUA_PATH='/root/.luarocks/share/lua/5.1/?.lua;/root/.luarocks/share/lua/5.1/
     LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH \
     DYLD_LIBRARY_PATH=/usr/local/lib:$DYLD_LIBRARY_PATH
 
-# Install unzip for unpacking luarocks
-RUN apt-get update \
-    && apt-get install -y unzip
-
-# Clean up
-RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-
 # Install busted for running tests
 RUN luarocks install busted
 
@@ -36,10 +31,3 @@ WORKDIR /app
 # Copy project files into image
 COPY test/*.lua /app/test/
 COPY src /app/src/
-# COPY CMakeLists.txt /app/
-
-# # Compile C extensions
-# RUN mkdir build \
-#     && cd build \
-#     && cmake .. -DCMAKE_BUILD_TYPE=Release \
-#     && make
