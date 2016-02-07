@@ -1,0 +1,706 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+    <title>Downstroke docs</title>
+    <link rel="stylesheet" href="ldoc.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+
+<div id="product">
+	<div id="product_logo"></div>
+	<div id="product_name"><big><b></b></big></div>
+	<div id="product_description"></div>
+</div> <!-- id="product" -->
+
+
+<div id="main">
+
+
+<!-- Menu -->
+
+<div id="navigation">
+<br/>
+<h1>Downstroke</h1>
+
+
+<h2>Contents</h2>
+<ul>
+<li><a href="#Functions">Functions</a></li>
+</ul>
+
+
+<h2>Modules</h2>
+<ul class="$(kind=='Topics' and '' or 'nowrap'">
+  <li><strong>downstroke</strong></li>
+</ul>
+<h2>Topics</h2>
+<ul class="$(kind=='Topics' and '' or 'nowrap'">
+  <li><a href="topics/README.md.html">README</a></li>
+  <li><a href="topics/LICENSE.html">LICENSE</a></li>
+</ul>
+
+</div>
+
+<div id="content">
+
+<h1>Module <code>downstroke</code></h1>
+<p>
+
+</p>
+<p>
+
+</p>
+
+
+<h2><a href="#Functions">Functions</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#_.get_function">_.get_function (func_name)</a></td>
+	<td class="summary">Returns the function associated with name <code>func_name</code> (or nil if no such
+ function exists).</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#_.partial">_.partial (func[, ...])</a></td>
+	<td class="summary">Partially applies arguments to <code>func</code>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#_.compact">_.compact (array)</a></td>
+	<td class="summary">Creates a copy of the array, but with all falsey elements excluded.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#_.take">_.take (array[, n=1])</a></td>
+	<td class="summary">Returns the first <code>n</code> elements from the beginning of <code>array</code>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#_.flow">_.flow (...)</a></td>
+	<td class="summary">Performs reverse function composition.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#_.identity">_.identity (...)</a></td>
+	<td class="summary">Returns its arguments unchanged.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#_.pack">_.pack (...)</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#_.range">_.range (start, finish, step)</a></td>
+	<td class="summary">Creates an array containing a range of numbers.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#_.contains">_.contains (collection, target_value)</a></td>
+	<td class="summary">Checks whether <code>collection</code> contains <code>target_value</code>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#_.each">_.each (collection, func)</a></td>
+	<td class="summary">Calls <code>func</code> on each value in <code>collection</code>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#_.filter">_.filter (collection, func)</a></td>
+	<td class="summary">Creates an array of values from <code>collection</code>, only including a value <code>v</code>
+ if <code>func(v)</code> is truthy.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#_.map">_.map (collection, func)</a></td>
+	<td class="summary">Applies <code>func</code> to each of the values in <code>collection</code>, and returns the results
+ in an array.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#_.reduce">_.reduce (collection, func, accumulator)</a></td>
+	<td class="summary">Performs a left fold.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#_.sort">_.sort (collection)</a></td>
+	<td class="summary">Creates an array containing the values from <code>collection</code> in ascending
+ sorted order.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#_.sort_by">_.sort_by (collection, func)</a></td>
+	<td class="summary">Creates an array containing the values from <code>collection</code> in sorted order.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#_.to_pairs">_.to_pairs (dict)</a></td>
+	<td class="summary">Creates an array of key-value pairs from <code>dict</code>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#_.ends_with">_.ends_with (str, target, position)</a></td>
+	<td class="summary">Checks if <code>str</code> ends with the given target string.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#_.starts_with">_.starts_with (str, target, position)</a></td>
+	<td class="summary">Checks if <code>str</code> starts with the given target string.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#_.clone">_.clone (value)</a></td>
+	<td class="summary">Creates a shallow clone of <code>value</code>.</td>
+	</tr>
+</table>
+
+<br/>
+<br/>
+
+
+    <h2 class="section-header "><a name="Functions"></a>Functions</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "_.get_function"></a>
+    <strong>_.get_function (func_name)</strong>
+    </dt>
+    <dd>
+    Returns the function associated with name <code>func_name</code> (or nil if no such
+ function exists). </p>
+
+<p> If <code>func_name</code> is a function, it is returned unchanged.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">func_name</span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">
+ <span class="keyword">local</span> add = _.get_function(<span class="string">'+'</span>)
+ <span class="global">assert</span>(add(<span class="number">40</span>, <span class="number">2</span>) == <span class="number">42</span>)</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "_.partial"></a>
+    <strong>_.partial (func[, ...])</strong>
+    </dt>
+    <dd>
+    Partially applies arguments to <code>func</code>.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">func</span>
+            <span class="types"><span class="type">func</span></span>
+
+
+
+        </li>
+        <li><span class="parameter">...</span>
+         The partials.
+         (<em>optional</em>)
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">
+ <span class="keyword">local</span> halve = _.partial(<span class="string">'/'</span>, _, <span class="number">2</span>)
+ <span class="global">assert</span>(halve(<span class="number">10</span>) == <span class="number">5</span>)</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "_.compact"></a>
+    <strong>_.compact (array)</strong>
+    </dt>
+    <dd>
+    Creates a copy of the array, but with all falsey elements excluded.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">array</span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "_.take"></a>
+    <strong>_.take (array[, n=1])</strong>
+    </dt>
+    <dd>
+    Returns the first <code>n</code> elements from the beginning of <code>array</code>.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">array</span>
+            <span class="types"><a class="type" href="http://www.lua.org/manual/5.2/manual.html#6.5">table</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">n</span>
+            <span class="types"><span class="type">integer</span></span>
+
+
+
+         (<em>default</em> 1)
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "_.flow"></a>
+    <strong>_.flow (...)</strong>
+    </dt>
+    <dd>
+    Performs reverse function composition.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">...</span>
+            <span class="types"><span class="type">func</span></span>
+         Functions to compose.
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">
+ <span class="keyword">local</span> find_min = _.flow(_.sort, _.take)
+ <span class="global">assert</span>(find_min({<span class="number">4</span>, <span class="number">2</span>, <span class="number">3</span>}) == <span class="number">2</span>)</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "_.identity"></a>
+    <strong>_.identity (...)</strong>
+    </dt>
+    <dd>
+    Returns its arguments unchanged.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">...</span>
+
+
+
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+        <li>
+        An array containing the arguments</li>
+        <li>
+        The number of arguments</li>
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "_.pack"></a>
+    <strong>_.pack (...)</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">...</span>
+
+
+
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+        <li>
+        An array containing the arguments</li>
+        <li>
+        The number of arguments</li>
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "_.range"></a>
+    <strong>_.range (start, finish, step)</strong>
+    </dt>
+    <dd>
+    Creates an array containing a range of numbers.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">start</span>
+
+
+
+        </li>
+        <li><span class="parameter">finish</span>
+
+
+
+        </li>
+        <li><span class="parameter">step</span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "_.contains"></a>
+    <strong>_.contains (collection, target_value)</strong>
+    </dt>
+    <dd>
+    Checks whether <code>collection</code> contains <code>target_value</code>.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">collection</span>
+
+
+
+        </li>
+        <li><span class="parameter">target_value</span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "_.each"></a>
+    <strong>_.each (collection, func)</strong>
+    </dt>
+    <dd>
+    Calls <code>func</code> on each value in <code>collection</code>.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">collection</span>
+
+
+
+        </li>
+        <li><span class="parameter">func</span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "_.filter"></a>
+    <strong>_.filter (collection, func)</strong>
+    </dt>
+    <dd>
+    Creates an array of values from <code>collection</code>, only including a value <code>v</code>
+ if <code>func(v)</code> is truthy.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">collection</span>
+
+
+
+        </li>
+        <li><span class="parameter">func</span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "_.map"></a>
+    <strong>_.map (collection, func)</strong>
+    </dt>
+    <dd>
+    Applies <code>func</code> to each of the values in <code>collection</code>, and returns the results
+ in an array.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">collection</span>
+
+
+
+        </li>
+        <li><span class="parameter">func</span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "_.reduce"></a>
+    <strong>_.reduce (collection, func, accumulator)</strong>
+    </dt>
+    <dd>
+    Performs a left fold.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">collection</span>
+
+
+
+        </li>
+        <li><span class="parameter">func</span>
+
+
+
+        </li>
+        <li><span class="parameter">accumulator</span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">
+ <span class="keyword">local</span> total = _.reduce({<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>}, <span class="string">'+'</span>, <span class="number">0</span>)
+ <span class="global">assert</span>(total == <span class="number">10</span>)</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "_.sort"></a>
+    <strong>_.sort (collection)</strong>
+    </dt>
+    <dd>
+    Creates an array containing the values from <code>collection</code> in ascending
+ sorted order.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">collection</span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "_.sort_by"></a>
+    <strong>_.sort_by (collection, func)</strong>
+    </dt>
+    <dd>
+    Creates an array containing the values from <code>collection</code> in sorted order.
+ For two elements, a and b, it is guaranteed that a appears before b if
+ func(a) &lt; func(b).
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">collection</span>
+
+
+
+        </li>
+        <li><span class="parameter">func</span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "_.to_pairs"></a>
+    <strong>_.to_pairs (dict)</strong>
+    </dt>
+    <dd>
+    Creates an array of key-value pairs from <code>dict</code>.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">dict</span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "_.ends_with"></a>
+    <strong>_.ends_with (str, target, position)</strong>
+    </dt>
+    <dd>
+    Checks if <code>str</code> ends with the given target string.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">str</span>
+
+
+
+        </li>
+        <li><span class="parameter">target</span>
+
+
+
+        </li>
+        <li><span class="parameter">position</span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "_.starts_with"></a>
+    <strong>_.starts_with (str, target, position)</strong>
+    </dt>
+    <dd>
+    Checks if <code>str</code> starts with the given target string.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">str</span>
+
+
+
+        </li>
+        <li><span class="parameter">target</span>
+
+
+
+        </li>
+        <li><span class="parameter">position</span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "_.clone"></a>
+    <strong>_.clone (value)</strong>
+    </dt>
+    <dd>
+    Creates a shallow clone of <code>value</code>.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">value</span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+</dl>
+
+
+</div> <!-- id="content" -->
+</div> <!-- id="main" -->
+<div id="about">
+<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.3</a></i>
+<i style="float:right;">Last updated 2016-02-07 04:06:52 </i>
+</div> <!-- id="about" -->
+</div> <!-- id="container" -->
+</body>
+</html>
