@@ -6,11 +6,13 @@ docker run --rm -v $PWD:/app -u "$UID:$GID" anibali/ldoc .
 cd doc
 
 git init
+git config --global user.name "Auto"
+git config --global user.email "<>"
 git remote add origin git@github.com:$GITHUB_REPO.git
 git fetch origin gh-pages
 git reset --mixed origin/gh-pages
 git checkout -b gh-pages --track origin/gh-pages
 git add .
-git commit --author "Auto <>" -m "Automatic documentation update [ci skip]"
+git commit -m "Automatic documentation update [ci skip]"
 git push origin gh-pages
 rm -rf .git
