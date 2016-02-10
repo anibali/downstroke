@@ -229,6 +229,17 @@ _.reduce = function(collection, func, accumulator)
 end
 
 ---
+-- Randomly permutes the collection
+_.shuffle = function(collection)
+  collection = _.clone(collection)
+  local shuffled = {}
+  for i=1,#collection do
+    table.insert(shuffled, table.remove(collection, math.random(1, #collection)))
+  end
+  return shuffled
+end
+
+---
 -- Creates an array containing the values from `collection` in ascending
 -- sorted order.
 _.sort = function(collection)

@@ -113,6 +113,16 @@ describe('downstroke', function()
     end)
   end)
 
+  describe('shuffle', function()
+    it('works', function()
+      local array = {1, 2, 3, 4}
+      local expected = {3, 1, 2, 4}
+      math.randomseed(1234)
+      local actual = _.shuffle(array)
+      assert.are.same(expected, actual)
+    end)
+  end)
+
   describe('sort_by', function()
     it('works', function()
       local array = {5, 2, -6}
