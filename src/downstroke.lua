@@ -95,6 +95,17 @@ _.compact = function(array)
 end
 
 ---
+-- Converts an array of pairs (eg `{{'foo', 42}, {'bar', 27}}`) into an
+-- associative table (eg `{foo=42, bar=27}`).
+_.from_pairs = function(array_of_pairs)
+  local dict = {}
+  for i, pair in ipairs(array_of_pairs) do
+    dict[pair[1]] = pair[2]
+  end
+  return dict
+end
+
+---
 -- Returns the first `n` elements from the beginning of `array`.
 --
 -- @tparam table array

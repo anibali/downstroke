@@ -28,6 +28,15 @@ describe('downstroke', function()
     end)
   end)
 
+  describe('from_pairs', function()
+    it('works', function()
+      local array_of_pairs = {{'foo', 42}, {'bar', 27}}
+      local expected = {foo=42, bar=27}
+      local actual = _.from_pairs(array_of_pairs)
+      assert.are.same(expected, actual)
+    end)
+  end)
+
   describe('take', function()
     it('works', function()
       local array = {'a', 'b', 'c', 'd', 'e'}
