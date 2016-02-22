@@ -74,6 +74,14 @@ describe('downstroke', function()
     end)
   end)
 
+  describe('carve', function()
+    it('works', function()
+      local array = {1, 2, 3, 4, 5}
+      local expected = {{1, 2, 3}, {4}, {5}}
+      assert.are.same(expected, _.carve(array, {0.6, 0.2, 0.2}))
+    end)
+  end)
+
   describe('contains', function()
     it('works', function()
       local array = {2, 4, 6}

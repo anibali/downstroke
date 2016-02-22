@@ -173,6 +173,40 @@ end
 -- Collection
 
 ---
+-- Carves up `collection` into portioned groups. Any uneven remaining elements
+-- are placed in the last group.
+--
+-- @usage
+-- local carved = _.carve({1, 2, 3, 4, 5}, {0.6, 0.2, 0.2})
+-- assert(carved == {{1, 2, 3}, {4}, {5}})
+_.carve = function(collection, portions)
+  local portions = portions or {0.5, 0.5}
+  local portions_sum = _.reduce(portions, '+')
+  dividers = _.map(portions, function(v)
+    return (v / portions_sum) * #collection
+  end)
+  dividers = _.reduce(dividers, function(list, v)
+    table.insert(list, (list[#list] or 0) + v)
+    return list
+  end, {})
+
+  local groups = _.map(dividers, function() return {} end)
+  local group_index = 1
+
+  for i=1,#collection do
+    while i > dividers[group_index] do
+      if group_index == #dividers then
+        break
+      end
+      group_index = group_index + 1
+    end
+    table.insert(groups[group_index], collection[i])
+  end
+
+  return groups
+end
+
+---
 -- Checks whether `collection` contains `target_value`.
 _.contains = function(collection, target_value)
   for key, value in pairs(collection) do
