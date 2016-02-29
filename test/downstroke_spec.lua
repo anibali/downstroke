@@ -28,6 +28,15 @@ describe('downstroke', function()
     end)
   end)
 
+  describe('flatten', function()
+    it('works', function()
+      local array = {1, {2, 3}, {{4}}}
+      local expected = {1, 2, 3, {4}}
+      local actual = _.flatten(array)
+      assert.are.same(expected, actual)
+    end)
+  end)
+
   describe('from_pairs', function()
     it('works', function()
       local array_of_pairs = {{'foo', 42}, {'bar', 27}}

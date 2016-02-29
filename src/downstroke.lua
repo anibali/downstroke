@@ -95,6 +95,22 @@ _.compact = function(array)
 end
 
 ---
+-- Flattens `array` a single level deep.
+_.flatten = function(array)
+  local flattened_array = {}
+  for i, element in ipairs(array) do
+    if type(element) == 'table' then
+      for j, subelement in ipairs(element) do
+        table.insert(flattened_array, subelement)
+      end
+    else
+      table.insert(flattened_array, element)
+    end
+  end
+  return flattened_array
+end
+
+---
 -- Converts an array of pairs (eg `{{'foo', 42}, {'bar', 27}}`) into an
 -- associative table (eg `{foo=42, bar=27}`).
 _.from_pairs = function(array_of_pairs)
