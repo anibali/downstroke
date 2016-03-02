@@ -325,6 +325,16 @@ end
 -- Dict
 
 ---
+-- Creates an array of keys from `dict`.
+_.keys = function(dict)
+  local key_array = {}
+  for k,v in pairs(dict) do
+    table.insert(key_array, k)
+  end
+  return key_array
+end
+
+---
 -- Creates an array of key-value pairs from `dict`.
 _.to_pairs = function(dict)
   local pair_array = {}
@@ -332,6 +342,16 @@ _.to_pairs = function(dict)
     table.insert(pair_array, {k, v})
   end
   return pair_array
+end
+
+---
+-- Creates an array of values from `dict`.
+_.values = function(dict)
+  local value_array = {}
+  for k,v in pairs(dict) do
+    table.insert(value_array, v)
+  end
+  return value_array
 end
 
 -- String

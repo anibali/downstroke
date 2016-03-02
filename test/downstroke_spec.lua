@@ -158,11 +158,27 @@ describe('downstroke', function()
     end)
   end)
 
+  describe('keys', function()
+    it('works', function()
+      local map = {foo=42, bar=27}
+      local expected = {'foo', 'bar'}
+      assert.are.same(expected, _.keys(map))
+    end)
+  end)
+
   describe('to_pairs', function()
     it('works', function()
       local map = {foo=42, bar=27}
       local expected = {{'foo', 42}, {'bar', 27}}
       assert.are.same(expected, _.to_pairs(map))
+    end)
+  end)
+
+  describe('values', function()
+    it('works', function()
+      local map = {foo=42, bar=27}
+      local expected = {42, 27}
+      assert.are.same(expected, _.values(map))
     end)
   end)
 
