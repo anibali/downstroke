@@ -291,11 +291,12 @@ end
 
 ---
 -- Randomly permutes the collection
-_.shuffle = function(collection)
+_.shuffle = function(collection, random_function)
+  random_function = random_function or math.random
   collection = _.clone(collection)
   local shuffled = {}
   for i=1,#collection do
-    table.insert(shuffled, table.remove(collection, math.random(1, #collection)))
+    table.insert(shuffled, table.remove(collection, random_function(1, #collection)))
   end
   return shuffled
 end
