@@ -28,6 +28,16 @@ describe('downstroke', function()
     end)
   end)
 
+  describe('concat', function()
+    it('works', function()
+      local array1 = {1, 2}
+      local array2 = {3, 4}
+      local expected = {1, 2, 3, 4}
+      local actual = _.concat(array1, array2)
+      assert.are.same(expected, actual)
+    end)
+  end)
+
   describe('flatten', function()
     it('works', function()
       local array = {1, {2, 3}, {{4}}}

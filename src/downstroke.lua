@@ -95,6 +95,17 @@ _.compact = function(array)
 end
 
 ---
+-- Creates a new array containing the elements of `array` followed by the
+-- elements of `other`.
+_.concat = function(array, other)
+  local new_array = _.clone(array)
+  for i, element in ipairs(other) do
+    table.insert(new_array, element)
+  end
+  return new_array
+end
+
+---
 -- Flattens `array` a single level deep.
 _.flatten = function(array)
   local flattened_array = {}
@@ -328,6 +339,8 @@ end
 ---
 -- Merges properties from `sources` into `dict`. The rightmost value of a
 -- property takes precedence.
+--
+-- Mutates `dict`.
 --
 -- @usage
 -- local person = {name='John Doe', age=17}
