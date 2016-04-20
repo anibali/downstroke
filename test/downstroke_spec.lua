@@ -158,6 +158,15 @@ describe('downstroke', function()
     end)
   end)
 
+  describe('assign', function()
+    it('works', function()
+      local dest = {answer=42, right='wrong'}
+      local source = {foo='bar', right='left'}
+      local expected = {answer=42, right='left', foo='bar'}
+      assert.are.same(expected, _.assign(dest, source))
+    end)
+  end)
+
   describe('keys', function()
     it('works', function()
       local map = {foo=42, bar=27}

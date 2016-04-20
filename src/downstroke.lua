@@ -23,7 +23,7 @@ local named_functions = {
 --
 -- @usage
 -- local add = _.get_function('+')
--- assert(add(40, 2) == 42)
+-- assert_true(add(40, 2) == 42)
 _.get_function = function(func_name)
   if type(func_name) == 'function' then
     return func_name
@@ -39,7 +39,7 @@ end
 -- @param[opt] ... The partials.
 -- @usage
 -- local halve = _.partial('/', _, 2)
--- assert(halve(10) == 5)
+-- assert_true(halve(10) == 5)
 _.partial = function(...)
   local args, n_args = _.pack(...)
   local func = _.get_function(args[1])
@@ -149,7 +149,7 @@ end
 -- @func ... Functions to compose.
 -- @usage
 -- local find_min = _.flow(_.sort, _.take)
--- assert(find_min({4, 2, 3}) == 2)
+-- assert_true(find_min({4, 2, 3}) == 2)
 _.flow = function(...)
   local functions = {...}
   local composed_function = function(...)
@@ -194,7 +194,7 @@ end
 --
 -- @usage
 -- local carved = _.carve({1, 2, 3, 4, 5}, {0.6, 0.2, 0.2})
--- assert(carved == {{1, 2, 3}, {4}, {5}})
+-- assert_true(carved == {{1, 2, 3}, {4}, {5}})
 _.carve = function(collection, portions)
   local portions = portions or {0.5, 0.5}
   local portions_sum = _.reduce(portions, '+')
@@ -274,7 +274,7 @@ end
 --
 -- @usage
 -- local total = _.reduce({1, 2, 3, 4}, '+', 0)
--- assert(total == 10)
+-- assert_true(total == 10)
 _.reduce = function(collection, func, accumulator)
   func = _.get_function(func)
   local first_pass = true
@@ -290,7 +290,7 @@ _.reduce = function(collection, func, accumulator)
 end
 
 ---
--- Randomly permutes the collection
+-- Randomly permutes the collection.
 _.shuffle = function(collection, random_function)
   random_function = random_function or math.random
   collection = _.clone(collection)
@@ -324,6 +324,25 @@ _.sort_by = function(collection, func)
 end
 
 -- Dict
+
+---
+-- Merges properties from `sources` into `dict`. The rightmost value of a
+-- property takes precedence.
+--
+-- @usage
+-- local person = {name='John Doe', age=17}
+-- _.assign(person, {age=18, car='4WD'})
+-- assert_true(person == {name='John Doe', age=18, car='4WD'})
+_.assign = function(dict, ...)
+  local sources = {...}
+  while #sources > 0 do
+    local source = table.remove(sources, 1)
+    for k,v in pairs(source) do
+      dict[k] = v
+    end
+  end
+  return dict
+end
 
 ---
 -- Creates an array of keys from `dict`.
